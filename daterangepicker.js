@@ -44,8 +44,12 @@
         //tracks visible state
         this.isShowing = false;
 
+        //custom options
+        if (typeof options !== 'object' || options === null)
+            options = {};
+
         //create the picker HTML object
-        var DRPTemplate = '<div class="daterangepicker dropdown-menu">' +
+        var DRPTemplate = options.template || '<div class="daterangepicker dropdown-menu">' +
                 '<div class="calendar first left"></div>' +
                 '<div class="calendar second right"></div>' +
                 '<div class="ranges">' +
@@ -63,10 +67,6 @@
                   '</div>' +
                 '</div>' +
               '</div>';
-
-        //custom options
-        if (typeof options !== 'object' || options === null)
-            options = {};
 
         this.parentEl = (typeof options === 'object' && options.parentEl && $(options.parentEl).length) ? $(options.parentEl) : $(this.parentEl);
         this.container = $(DRPTemplate).appendTo(this.parentEl);
